@@ -1,10 +1,16 @@
 import express from "express";
 import { upload } from "../middlewares/upload.middlewares.js";
-import { testUploadHandler } from "../controllers/transaction.controllers.js";
+import {
+    analyzeSingleTransaction,
+    analyzeBulkFile,
+} from "../controllers/transaction.controllers.js";
 
 const router = express.Router();
 
-// TEST ROUTE
-router.post("/upload", upload.single("file"), testUploadHandler);
+// 1. Real-time Analysis Endpoint (JSON Input)
+router.post("/analyze", analyzeSingleTransaction);
+
+// 2. Bulk Upload Endpoint (CSV/JSON File Input)
+router.post("/upload", upload.single("file"), analyzeBulkFile);
 
 export default router;
