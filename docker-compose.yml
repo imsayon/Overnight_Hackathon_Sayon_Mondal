@@ -37,3 +37,4 @@ services:
 
 volumes:
     postgres_data:
+    # This volume stores PostgreSQL data persistently
